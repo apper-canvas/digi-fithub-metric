@@ -1,5 +1,4 @@
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
 
 const memberService = {
   async getCurrentMember() {
@@ -139,9 +138,9 @@ const memberService = {
     }
   },
 
-  async getMemberStats(id) {
+async getMemberStats(id) {
     try {
-      const member = await this.getCurrentMember();
+      const member = await this.getById(1); // Use hardcoded member ID for demo
       if (!member) throw new Error("Member not found");
       
       return {
