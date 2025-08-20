@@ -138,6 +138,30 @@ const memberService = {
     }
   },
 
+async getById(id) {
+    try {
+      // Mock implementation - would use ApperClient in real scenario
+      const mockMembers = [
+        { id: 1, name: "John Doe", streak: 5, totalWorkouts: 23, monthlyVisits: 12, currentWeight: 75, goalWeight: 70 },
+        { id: 2, name: "Jane Smith", streak: 3, totalWorkouts: 15, monthlyVisits: 8, currentWeight: 65, goalWeight: 60 }
+      ];
+      
+      const member = mockMembers.find(m => m.id === parseInt(id));
+      if (!member) {
+        throw new Error(`Member with ID ${id} not found`);
+      }
+      
+      return member;
+    } catch (error) {
+      if (error?.response?.data?.message) {
+        console.error("Error fetching member by ID:", error?.response?.data?.message);
+      } else {
+        console.error(error);
+      }
+      throw error;
+    }
+  },
+
 async getMemberStats(id) {
     try {
       const member = await this.getById(1); // Use hardcoded member ID for demo
